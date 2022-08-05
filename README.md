@@ -6,8 +6,8 @@ Code for blog post - https://carlpaton.github.io/2022/07/integration-tests-with-
 
 ## Source Code
 
-* CustomerApi                  -> MVC Web API (with controllers)
-* CustomerApi.IntegrationTests -> xUnit Test Project for the API
+* [CustomerApi](https://github.com/carlpaton/IntegrationTestsWithTestContainers/tree/main/src/CustomerApi)                  -> MVC Web API (with controllers)
+* [CustomerApi.IntegrationTests](https://github.com/carlpaton/IntegrationTestsWithTestContainers/tree/main/src/CustomerApi.IntegrationTests) -> xUnit Test Project for the API
 
 ## Database
 
