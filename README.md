@@ -17,7 +17,7 @@ The CustomerApi uses a [postgres](https://hub.docker.com/_/postgres/) database, 
 docker run --name CustomerApiDatabase -p 5555:5432 -e POSTGRES_DB=mydb -e POSTGRE_USER=postgres -e POSTGRES_PASSWORD=password -d postgres:14.4
 ```
 
-The connection string would then be `Server=localhost;Port=5555;Database=mydb;User ID=foo;Password=64d15593-6160-43de-9d46-f80e71cec08b`
+The connection string would then be `Server=localhost;Port=5555;Database=mydb;User ID=postgres;Password=password`
 
 This is just for local testing, secrets should be securely injected in production - but you knew that right :D
 
