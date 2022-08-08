@@ -18,6 +18,8 @@ public class UpdateCustomerController : ControllerBase
     [ProducesResponseType(typeof(Customer), StatusCodes.Status200OK)]
     public IActionResult Update(Guid customerId, [FromBody] Customer customer)
     {
+        _customerRepository.Update(customerId, customer);
+
         return Ok(customer);
     }
 }

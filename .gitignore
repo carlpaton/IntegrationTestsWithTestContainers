@@ -6,3 +6,4 @@ packages
 /.vs/config/applicationhost.config
 bin
 obj
+Migrations

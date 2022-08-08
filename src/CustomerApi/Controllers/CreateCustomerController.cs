@@ -18,6 +18,7 @@ public class CreateCustomerController : ControllerBase
     [ProducesResponseType(typeof(Customer), StatusCodes.Status201Created)]
     public IActionResult Create([FromBody] Customer customer)
     {
+        _customerRepository.Save(customer);
         return StatusCode(StatusCodes.Status201Created, customer);
     }
 }

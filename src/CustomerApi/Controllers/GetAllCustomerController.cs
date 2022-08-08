@@ -18,15 +18,7 @@ public class GetAllCustomerController : ControllerBase
     [ProducesResponseType(typeof(List<Customer>), StatusCodes.Status200OK)]
     public IActionResult GetAll()
     {
-        var list = new List<Customer>();
-        for (int i = 0; i < 5; i++)
-        {
-            list.Add(new Customer() {
-                Id = Guid.NewGuid(),
-                Name = $"Customer Name {i}",
-            });
-        }
-
-        return Ok(list);
+        var customers = _customerRepository.SelectAll();
+        return Ok(customers);
     }
 }

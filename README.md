@@ -24,3 +24,12 @@ This is just for local testing, secrets should be securely injected in productio
 To connect to the database using VS2022 you can use the plugin [NpgsqlPostgreSQLIntegration](https://marketplace.visualstudio.com/items?itemName=RojanskyS.NpgsqlPostgreSQLIntegration), I installed it from `Extensions` -> `Manage Extensions` -> `Visual Studio Marketplace`. It then installs with a VSIX installer (whatever that is). You then go `tools` -> `Connect to Database` -> `PostgreSQL Database`
 
 ![pgsqlconnection.png](./docs/diagrams/pgsqlconnection.png)
+
+### Migrations
+
+Delete your Migrations folder first.
+
+```
+dotnet ef migrations add MeaningfulMigrationName
+dotnet ef database update
+```

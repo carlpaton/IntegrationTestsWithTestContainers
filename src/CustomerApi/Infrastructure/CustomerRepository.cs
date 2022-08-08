@@ -1,33 +1,57 @@
-﻿using System.Data;
-
-namespace CustomerApi.Infrastructure;
-
-public class CustomerRepository : ICustomerRepository
+﻿namespace CustomerApi.Infrastructure
 {
-    private readonly IDbConnection _connection;
-
-    public CustomerRepository(IDbConnection dbConnection)
+    public class CustomerRepository : ICustomerRepository
     {
-        _connection = dbConnection;
-    }
+        private readonly DatabaseContext _dbContext;
 
-    public Guid Create(Customer customer)
-    {
-        throw new NotImplementedException();
-    }
+        public CustomerRepository(DatabaseContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
 
-    public void Delete(Guid customerId)
-    {
-        throw new NotImplementedException();
-    }
+        public void Delete(Guid customerId)
+        {
+            var customer = _dbContext
+                .Customers
+                .Where(x => x.Id == customerId)
+                .FirstOrDefault();
 
-    public Customer Read(Guid customerId)
-    {
-        throw new NotImplementedException();
-    }
+            _dbContext.Remove(customer);
+            _dbContext.SaveChanges();
+        }
 
-    public void Update(Customer customer)
-    {
-        throw new NotImplementedException();
+        public void Save(Customer customer)
+        {
+            _dbContext.Add(customer);
+            _dbContext.SaveChanges();
+        }
+
+        public Customer Select(Guid customerId)
+        {
+            return _dbContext
+                .Customers
+                .Where(x => x.Id == customerId)
+                .FirstOrDefault();
+        }
+
+        public List<Customer> SelectAll()
+        {
+            return _dbContext
+                .Customers
+                .ToList();
+        }
+
+        public void Update(Guid customerId, Customer customer)
+        {
+            var current = _dbContext
+                .Customers
+                .Where(x => x.Id == customerId)
+                .FirstOrDefault();
+
+            current.Name = customer.Name;
+
+            _dbContext.Update(current);
+            _dbContext.SaveChanges();
+        }
     }
 }

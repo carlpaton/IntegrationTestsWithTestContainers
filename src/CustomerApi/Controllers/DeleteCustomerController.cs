@@ -18,6 +18,7 @@ public class DeleteCustomerController : ControllerBase
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     public IActionResult Delete(Guid customerId)
     {
+        _customerRepository.Delete(customerId);
         return NoContent();
     }
 }

@@ -1,9 +1,11 @@
-﻿namespace CustomerApi.Infrastructure;
-
-public interface ICustomerRepository
+﻿namespace CustomerApi.Infrastructure
 {
-    Guid Create(Customer customer);
-    Customer Read(Guid customerId);
-    void Update(Customer customer);
-    void Delete(Guid customerId);
+    public interface ICustomerRepository
+    {
+        void Save(Customer customer);
+        List<Customer> SelectAll();
+        Customer Select(Guid customerId);
+        void Update(Guid customerId, Customer customer);
+        void Delete(Guid customerId);
+    }
 }

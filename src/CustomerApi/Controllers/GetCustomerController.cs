@@ -18,11 +18,7 @@ public class GetCustomerController : ControllerBase
     [ProducesResponseType(typeof(Customer), StatusCodes.Status200OK)]
     public IActionResult Read(Guid customerId)
     {
-        var customer = new Customer
-        {
-            Id = customerId,
-            Name = "Customer Name"
-        };
+        var customer = _customerRepository.Select(customerId);
         return Ok(customer);
     }
 }
