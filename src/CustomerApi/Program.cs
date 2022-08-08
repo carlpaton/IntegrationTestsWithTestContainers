@@ -41,6 +41,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 
     // Apply migrations at runtime
+    // Need to first run `dotnet ef migrations add MeaningfulMigrationName`
     // https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/applying?tabs=dotnet-core-cli#apply-migrations-at-runtime
     using var scope = app.Services.CreateScope();
     var db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
