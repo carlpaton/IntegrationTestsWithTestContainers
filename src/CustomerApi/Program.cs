@@ -31,7 +31,6 @@ builder.Services.AddDbContext<DatabaseContext>((serviceProvider, optionsBuilder)
 );
 
 builder.Services.AddTransient<ICustomerRepository, CustomerRepository>();
-// _dbContext.Database.Migrate();
 
 var app = builder.Build();
 
@@ -40,6 +39,12 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+
+    // Apply migrations at runtime
+    // https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/applying?tabs=dotnet-core-cli#apply-migrations-at-runtime
+    using var scope = app.Services.CreateScope();
+    var db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
+    db.Database.Migrate();
 }
 
 app.UseAuthorization();
