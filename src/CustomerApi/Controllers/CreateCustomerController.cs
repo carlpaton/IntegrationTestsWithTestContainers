@@ -16,9 +16,25 @@ public class CreateCustomerController : ControllerBase
 
     [HttpPost]
     [ProducesResponseType(typeof(Customer), StatusCodes.Status201Created)]
-    public IActionResult Create([FromBody] Customer customer)
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> Create([FromBody] Customer customer)
     {
-        _customerRepository.Save(customer);
-        return StatusCode(StatusCodes.Status201Created, customer);
+        try
+        {
+
+            await _customerRepository.SaveAsync(customer);
+
+            if (customer.Id == Guid.Empty ||
+                string.IsNullOrEmpty(customer.Name))
+            {
+                return BadRequest();
+            }
+
+            return CreatedAtAction("Create", new { id = customer.Id }, customer);
+        }
+        catch (Exception ex) 
+        { 
+            return Ok(ex);
+        }
     }
 }

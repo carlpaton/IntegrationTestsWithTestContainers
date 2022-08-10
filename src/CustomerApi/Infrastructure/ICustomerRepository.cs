@@ -2,7 +2,7 @@
 {
     public interface ICustomerRepository
     {
-        void Save(Customer customer);
+        Task SaveAsync(Customer customer);
         List<Customer> SelectAll();
         Customer Select(Guid customerId);
         void Update(Guid customerId, Customer customer);

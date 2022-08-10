@@ -9,9 +9,9 @@ public class DatabaseContext : DbContext
 
     public DatabaseContext(DbContextOptions options) : base(options) { }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder.ApplyConfiguration(new CustomerEntityTypeConfiguration());
-        base.OnModelCreating(modelBuilder);
-    }
+    //protected override void OnModelCreating(ModelBuilder modelBuilder)
+    //{
+    //    modelBuilder.ApplyConfiguration(new CustomerEntityTypeConfiguration());
+    //    base.OnModelCreating(modelBuilder);
+    //}
 }

@@ -20,10 +20,10 @@
             _dbContext.SaveChanges();
         }
 
-        public void Save(Customer customer)
+        public async Task SaveAsync(Customer customer)
         {
             _dbContext.Add(customer);
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
         }
 
         public Customer Select(Guid customerId)
