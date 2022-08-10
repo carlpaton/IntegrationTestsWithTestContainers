@@ -13,10 +13,10 @@ namespace CustomerApi.IntegrationTests
         public async Task Ping_ReturnsOk()
         {
             // Act
-            var pingResponse = await HttpClient.GetAsync("ping");
+            using var response = await HttpClient.GetAsync("ping");
 
             // Assert
-            pingResponse.StatusCode.Should().Be(HttpStatusCode.OK);
+            response.StatusCode.Should().Be(HttpStatusCode.OK);
         }
     }
 }
