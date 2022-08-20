@@ -1,21 +1,21 @@
-﻿using CustomerApi.Controllers;
-using Xunit;
-using Moq;
+﻿using Xunit;
 using CustomerApi.Infrastructure;
 using System;
 using FluentAssertions;
 using System.Threading.Tasks;
 using System.Net;
-using CustomerApi.IntegrationTests.Setup;
 using System.Net.Http;
 using System.Net.Mime;
 using System.Text;
 using System.Text.Json;
+using CustomerApi.IntegrationTests.Setup;
 
 namespace CustomerApi.IntegrationTests;
 
-public class CreateCustomerControllerTests : OldTestBase
+public class CreateCustomerControllerTests : TestBase
 {
+    public CreateCustomerControllerTests(CustomerApiFactory factory) : base(factory) { }
+
     [Fact]
     public async Task Create_CreatesUser_WhenDataIsValid()
     {
@@ -23,7 +23,7 @@ public class CreateCustomerControllerTests : OldTestBase
         var customer = new Customer()
         {
             Id = Guid.NewGuid(),
-            Name = "Le Names"
+            Name = $"Le Names {DateTime.Now}" 
         };
 
         var request = new HttpRequestMessage(HttpMethod.Post, "customer")

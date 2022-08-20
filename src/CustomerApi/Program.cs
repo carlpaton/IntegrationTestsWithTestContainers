@@ -29,14 +29,17 @@ builder.Services.AddDbContext<DatabaseContext>((serviceProvider, optionsBuilder)
 
 builder.Services.AddTransient<ICustomerRepository, CustomerRepository>();
 
+// Configure the HTTP request pipeline.
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+}
 
+if (app.Environment.IsEnvironment("Test"))
+{
     // Apply migrations at runtime
     // Need to first run `dotnet ef migrations add MeaningfulMigrationName`
     // https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/applying?tabs=dotnet-core-cli#apply-migrations-at-runtime

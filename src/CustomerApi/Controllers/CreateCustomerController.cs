@@ -19,22 +19,14 @@ public class CreateCustomerController : ControllerBase
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Create([FromBody] Customer customer)
     {
-        try
+        await _customerRepository.SaveAsync(customer);
+
+        if (customer.Id == Guid.Empty ||
+            string.IsNullOrEmpty(customer.Name))
         {
-
-            await _customerRepository.SaveAsync(customer);
-
-            if (customer.Id == Guid.Empty ||
-                string.IsNullOrEmpty(customer.Name))
-            {
-                return BadRequest();
-            }
-
-            return CreatedAtAction("Create", new { id = customer.Id }, customer);
+            return BadRequest();
         }
-        catch (Exception ex) 
-        { 
-            return Ok(ex);
-        }
+
+        return CreatedAtAction("Create", new { id = customer.Id }, customer);
     }
 }
