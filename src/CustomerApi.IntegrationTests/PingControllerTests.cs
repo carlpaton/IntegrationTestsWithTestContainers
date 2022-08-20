@@ -7,7 +7,7 @@ using Xunit;
 
 namespace CustomerApi.IntegrationTests
 {
-    public class PingControllerTests : TestBase
+    public class PingControllerTests : OldTestBase
     {
         [Fact]
         public async Task Ping_ReturnsOk()

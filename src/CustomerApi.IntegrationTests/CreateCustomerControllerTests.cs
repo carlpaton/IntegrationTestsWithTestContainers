@@ -14,7 +14,7 @@ using System.Text.Json;
 
 namespace CustomerApi.IntegrationTests;
 
-public class CreateCustomerControllerTests : TestBase
+public class CreateCustomerControllerTests : OldTestBase
 {
     [Fact]
     public async Task Create_CreatesUser_WhenDataIsValid()
