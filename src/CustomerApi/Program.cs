@@ -38,6 +38,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+// This is pretty trash as the `CustomerApi` is now polluted with Intergration tests concearns
 if (app.Environment.IsEnvironment("Test"))
 {
     // Apply migrations at runtime
