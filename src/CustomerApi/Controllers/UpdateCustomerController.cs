@@ -20,6 +20,12 @@ public class UpdateCustomerController : ControllerBase
     {
         _customerRepository.Update(customerId, customer);
 
-        return Ok(customer);
+        var response = new Customer()
+        {
+            Id = customerId,
+            Name = customer.Name
+        };
+
+        return Ok(response);
     }
 }

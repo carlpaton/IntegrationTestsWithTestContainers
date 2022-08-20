@@ -21,7 +21,7 @@ public class GetAllCustomerControllerTests : TestBase
     }
 
     [Fact]
-    public async Task GetAll_ReturnsAllUsers_WhenTheyExist()
+    public async Task GetAll_ReturnsAllCustomers_WhenTheyExist()
     {
         // Arrange
         var noCustomersToCreate = 10;
@@ -37,10 +37,10 @@ public class GetAllCustomerControllerTests : TestBase
         // Act
         using var response = await HttpClient.SendAsync(request);
         var stream = await response.Content.ReadAsStreamAsync();
-        var clients = JsonSerializer.Deserialize<List<Customer>>(stream, SerializerOptions.Default);
+        var customers = JsonSerializer.Deserialize<List<Customer>>(stream, SerializerOptions.Default);
 
         // Assert
         response.StatusCode.Should().Be(HttpStatusCode.OK);
-        clients.Count.Should().Be(noCustomersToCreate);
+        customers.Count.Should().Be(noCustomersToCreate);
     }
 }
